@@ -9,8 +9,8 @@ const server = new Hapi.Server({
     port: 3010,
 });
 
-/* loads db into request.server.app */
-server.app.users = require('./lib/db');
+/* fake in memory db */
+server.app.users = {};
 
 const start = async () => {
     await server.register([
@@ -35,7 +35,11 @@ const start = async () => {
 
     // routes
     server.route([
+        require('./lib/routes/auth-github'),
         require('./lib/routes/get-home'),
+        require('./lib/routes/get-user'),
+        require('./lib/routes/get-user-private'),
+        require('./lib/routes/post-logout'),
     ]);
 
     try {
