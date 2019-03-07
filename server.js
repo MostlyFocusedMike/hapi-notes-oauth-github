@@ -9,8 +9,23 @@ const server = new Hapi.Server({
     port: 3010,
 });
 
-/* fake in memory db */
-server.app.users = {};
+/* fake in memory db from pretend seeding */
+server.app.users = [
+    {
+        id: 1,
+        name: 'Fake User',
+        username: 'fake_usr',
+        avatar: 'https://www.catster.com/wp-content/uploads/2015/06/6becb852b27e1d80fbd03048dfb377a5_1273011771.jpg',
+        email: 'fake@gmail.com',
+    },
+    {
+        id: 2,
+        name: 'Not Real',
+        username: 'nonononoreal',
+        avatar: 'https://www.petbucket.com/resources/18/160536/picture/2F/85854511.jpg',
+        email: 'noreal@gmail.com',
+    },
+];
 
 const start = async () => {
     await server.register([
